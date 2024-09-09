@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%- title %></title>
+</head>
+<body>
+    <%- include('./partials/nav.ejs') %>
+    <div class="main">
+        <h1><%- title %></h1>
+        <form action="/users/sign-up" method="POST" class="sign-up-form">
+            <label for="name">Name</label>
+            <input  type="text"
+                    name="name"
+                    placeholder="Name" />
+            <label for="username">Username</label>
+            <input  type="text"
+                    name="username"
+                    placeholder="Username" />
+            <label for="password">Password</label>
+            <input  type="password"
+                    name="password"
+                    minlength="8" />
+            <label  for="confirm_password">Password</label>
+            <input  type="password"
+                    name="confirm_password"
+                    minlength="8" />
+            <div class="sign-up-button">
+                <button class="button">Sign up</button>
+            </div>
+        </form>
+        <% if (message) { %>
+            <div class="error-message">
+                <p><%- message %></p>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>

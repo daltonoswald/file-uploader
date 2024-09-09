@@ -3,5 +3,8 @@ const { body, validationResult } = require('express-validator');
 require('dotenv').config();
 
 exports.index = asyncHandler(async (req, res) => {
-    res.render('index', { title: 'Index Page'})
+    res.render('index', { 
+        title: 'Index Page', 
+        user: req.user
+    })
 })
