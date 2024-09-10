@@ -5,4 +5,6 @@ const router = express.Router();
 
 router.get('/', indexController.index);
 
+router.get('/dashboard', indexController.dashboardGet);
+
 module.exports = router;

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <link rel='stylesheet' href='/stylesheets/styles.css' />
+    </head>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class="main">
+            <h1><%= title %></h1>
+            <form action="/folders/create-folder" method="POST" class="create-folder-form">
+                <label for="name">Folder Name</label>
+                <input name="name"
+                        placeholder="Folder name"
+                        type="text" />
+                <div class="create-folder-button">
+                    <button class="button">Create Folder</button>
+                </div>
+            </form>
+            <div class="folder-container">
+                <% folders.forEach(function(folder) { %>
+                    <div class='folder'>
+                        <a href="/folders/<%=folder.id %>"><%- folder.name %></a>
+                        <p>Last modified: <%- folder.updatedAt %></p>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </body>
+</html>

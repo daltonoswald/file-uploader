@@ -3,6 +3,7 @@ const passport = require('passport');
 const session = require('express-session');
 const indexRouter = require('./routes/indexRouter');
 const userRouter = require('./routes/userRouter');
+const folderRouter = require('./routes/folderRouter');
 const { PrismaSessionStore } = require('@quixo3/prisma-session-store')
 const { PrismaClient } = require('@prisma/client');
 require('dotenv').config();
@@ -36,6 +37,7 @@ app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', userRouter);
+app.use('/folders', folderRouter);
 
 const assetsPath = path.join(__dirname, "public");
 app.use(express.static(assetsPath));
