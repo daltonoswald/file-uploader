@@ -14,6 +14,7 @@ exports.folderPageGet = async (req, res, next) => {
             files: true,
         }
     })
+    console.log(folderDetails)
 
     res.render('folder-page', {
         title: `Folder: ${folderDetails.name}`,
@@ -40,8 +41,6 @@ exports.createFolder = [
 
         const { name } = req.body;
         const userId = req.user.id;
-        console.log('Line 32', name);
-        console.log('Line 33', userId);
         try {
             await prisma.folder.create({
                 data: {
@@ -58,7 +57,7 @@ exports.createFolder = [
 
 exports.deleteFolderGet = async (req, res, next) => {
     const folderId = req.params.folderid;
-    console.log('Line 61 ', folderId);
+    console.log('59 ', folderId);
     const folderToDelete = await prisma.folder.findUnique({
         where: {
             id: folderId
@@ -68,6 +67,24 @@ exports.deleteFolderGet = async (req, res, next) => {
         title: 'Delete Folder',
         user: req.user,
         folder: folderToDelete,
-        userFolderId: req.params.id,
+        folderid: req.params.id,
     })
+}
+
+exports.deleteFolderPost = async (req, res, next) => {
+    console.log('Line 81 ', req.params.folderid);
+    console.log('Line 74', req.params);
+    try {
+        const folderId = req.params.folderid;
+        const folderToDelete = await prisma.folder.delete({
+            where: {
+                id: folderId
+            }
+        });
+        console.log('Line 80 ', folderToDelete)
+        console.log('Line 81 ', req.params.folderid);
+        res.redirect('/dashboard')
+    } catch (err) {
+        console.error(err);
+    }
 }

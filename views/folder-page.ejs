@@ -9,6 +9,12 @@
         <div class="main">
             <h1><%= title %></h1>
             <a href="/folders/delete-folder/<%=folder.id %>" class="button">Delete</a>
+            <form action="/folders/upload/<%=folder.id%>/new-file" enctype="multipart/form-data" method="post" class="new-file-form">
+                <input type="file" name="uploaded_file" />
+                <div class="new-file-button">
+                    <button class="button">Upload File</button>
+                </div>
+            </form>
         </div>
     </body>
 </html>
