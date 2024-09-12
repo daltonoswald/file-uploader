@@ -3,6 +3,7 @@ const { body, validationResult } = require('express-validator');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 require('dotenv').config();
+const format = require('date-fns').format;
 
 exports.folderPageGet = async (req, res, next) => {
     const folderId = req.params.folderid;
@@ -20,6 +21,7 @@ exports.folderPageGet = async (req, res, next) => {
         title: `Folder: ${folderDetails.name}`,
         folder: folderDetails,
         user: req.user,
+        format: format,
     })
 }
 

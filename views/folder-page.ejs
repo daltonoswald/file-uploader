@@ -8,13 +8,29 @@
         <%- include('./partials/nav.ejs') %>
         <div class="main">
             <h1><%= title %></h1>
+            <p>Created: <%-  format(folder.createdAt, 'MM-dd-yyyy') %></p>
             <a href="/folders/delete-folder/<%=folder.id %>" class="button">Delete</a>
             <form action="/folders/upload/<%=folder.id%>/new-file" enctype="multipart/form-data" method="post" class="new-file-form">
                 <input type="file" name="uploaded_file" />
-                <div class="new-file-button">
+                <!-- <label for="name">File Name</label>
+                <input type="text" placeholder="File Name" name="name" />
+                <div class="new-file-button"> -->
                     <button class="button">Upload File</button>
                 </div>
             </form>
+            <div class="file-container">
+                <% folder.files.forEach(function(file) { %>
+                    <div class="file">
+                        <div class="file-name"><%- file.name %></div>
+                        <div class="file-details">
+                            <!-- <p>Uploaded: <%- file.createdAt %></p> -->
+                            <p>Uploaded: <%- format(file.createdAt, 'MM-dd-yyyy') %></p>
+                            <p><%- file.size %> bytes</p>
+                            <p>Download</p> 
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
         </div>
     </body>
 </html>

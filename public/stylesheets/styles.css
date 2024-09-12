@@ -1,0 +1,27 @@
+@import url ('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+    font: 14px "Roboto";
+    margin: 0;
+}
+
+.nav {
+    height: 4vh;
+    padding: 1vh 5vw;
+    background-color: rgb(177, 129, 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 24px;
+}
+
+.left,
+.right {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+.right {
+    justify-content: flex-end;
+}
