@@ -17,11 +17,17 @@
                     <button class="button">Create Folder</button>
                 </div>
             </form>
+            <% if (message) { %>
+                <div class="error-message">
+                    <p><%- message %></p>
+                </div>
+            <% } %>
             <div class="folder-container">
                 <% folders.forEach(function(folder) { %>
                     <div class='folder'>
                         <a href="/folders/<%=folder.id %>"><%- folder.name %></a>
-                        <p>Last modified: <%- folder.updatedAt %></p>
+                        <p>Created: <%-  format(folder.createdAt, 'MMM dd, yyyy') %></p>
+                        <p>Last modified: <%- format(folder.updatedAt, 'iiii, MMMM dd, yyyy') %></p>
                     </div>
                 <% }) %>
             </div>

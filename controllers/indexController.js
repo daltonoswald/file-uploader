@@ -3,6 +3,7 @@ const { body, validationResult } = require('express-validator');
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 require('dotenv').config();
+const format = require('date-fns').format;
 
 exports.index = asyncHandler(async (req, res) => {
     res.render('index', { 
@@ -12,6 +13,7 @@ exports.index = asyncHandler(async (req, res) => {
 })
 
 exports.dashboardGet = asyncHandler(async (req, res) => {
+    const message = req.session.messages || [];
     const folders = await prisma.user.findUnique({
         where: {
             id: req.user.id
@@ -23,6 +25,8 @@ exports.dashboardGet = asyncHandler(async (req, res) => {
     res.render('dashboard', { 
         title: 'Dashboard', 
         user: req.user,
-        folders: folders.folders
+        folders: folders.folders,
+        format: format,
+        message: message
     })
 })

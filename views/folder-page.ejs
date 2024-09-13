@@ -8,8 +8,11 @@
         <%- include('./partials/nav.ejs') %>
         <div class="main">
             <h1><%= title %></h1>
-            <p>Created: <%-  format(folder.createdAt, 'MM-dd-yyyy') %></p>
+            <h2><%- folder.name %></h2>
+            <p>Created: <%-  format(folder.createdAt, 'MMMM dd, yyyy')%></p>
+            <p>Last modified: <%- format(folder.updatedAt, 'iiii, MMMM dd, yyyy')%></p>
             <a href="/folders/delete-folder/<%=folder.id %>" class="button">Delete</a>
+            <a href="/folders/edit-folder/<%=folder.id %>" class="button">Edit</a>
             <form action="/folders/upload/<%=folder.id%>/new-file" enctype="multipart/form-data" method="post" class="new-file-form">
                 <input type="file" name="uploaded_file" />
                 <!-- <label for="name">File Name</label>
@@ -24,7 +27,7 @@
                         <div class="file-name"><%- file.name %></div>
                         <div class="file-details">
                             <!-- <p>Uploaded: <%- file.createdAt %></p> -->
-                            <p>Uploaded: <%- format(file.createdAt, 'MM-dd-yyyy') %></p>
+                            <p>Uploaded: <%- format(file.createdAt, 'MMMM dd, yyyy')%></p>
                             <p><%- file.size %> bytes</p>
                             <p>Download</p> 
                         </div>

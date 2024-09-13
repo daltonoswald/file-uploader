@@ -50,10 +50,11 @@ passport.deserializeUser(async (id, done) => {
 exports.userLogInGet = async (req, res, next) => {
     try {
         const message = req.session.messages || [];
+        console.log(message);
 
         res.render('log-in', {
             title: "Log in",
-            message: message[0],
+            message: message,
             user: req.user,
         });
     } catch (err) {
