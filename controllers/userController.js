@@ -49,7 +49,7 @@ passport.deserializeUser(async (id, done) => {
 
 exports.userLogInGet = async (req, res, next) => {
     try {
-        const message = req.session.messages || [];
+        const message = req.session.messages || null;
         console.log(message);
 
         res.render('log-in', {
@@ -79,11 +79,11 @@ exports.userLogout = async(req, res, next) => {
 
 exports.userSignUpGet = async (req, res, next) => {
     try {
-        const message = req.session.messages || [];
+        const message = req.session.messages || null;
 
         res.render('sign-up', {
             title: "Sign up",
-            message: message[0],
+            message: message,
             user: req.user,
         });
     } catch (err) {

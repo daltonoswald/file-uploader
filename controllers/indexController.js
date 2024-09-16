@@ -13,15 +13,28 @@ exports.index = asyncHandler(async (req, res) => {
 })
 
 exports.dashboardGet = asyncHandler(async (req, res) => {
-    const message = req.session.messages || [];
+    const message = req.session.messages || null;
     const folders = await prisma.user.findUnique({
         where: {
             id: req.user.id
         },
+        // include: {
+        //     folders: true,
+        // },
         include: {
-            folders: true,
+            folders: {
+                orderBy: {
+                    updatedAt: 'desc'
+                },
+                include: {
+                    _count: {
+                        select: { files: true }
+                    }
+                }
+            }
         }
     })
+    console.log(folders.folders[0]);
     res.render('dashboard', { 
         title: 'Dashboard', 
         user: req.user,

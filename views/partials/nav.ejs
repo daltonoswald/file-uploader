@@ -1,19 +1,18 @@
 <div class="nav">
     <div class="left">
-        <a href="/" class="button">Home</a>
-        <a href="/dashboard" class="button">Dashboard</a>
+        <a href="/" class="nav-link">Home</a>
+        <a href="/dashboard" class="nav-link">Dashboard</a>
         <% if (typeof user !== 'undefined') { %>
-            <p>Logged In</p>
     </div>
     <div class="right">
         <p> <%= user.username %></p>
-        <a href="/users/logout" class="button">Logout</a>
+        <a href="/users/logout" class="nav-link">Logout</a>
     </div>
     <% } else { %>
     </div>
         <div class="right">
-            <a href="/users/log-in">Log in</a>
-            <a href="/users/sign-up">Sign up</a>
+            <a href="/users/log-in" class="nav-link">Log in</a>
+            <a href="/users/sign-up" class="nav-link">Sign up</a>
         </div>
         <% } %>
 </div>

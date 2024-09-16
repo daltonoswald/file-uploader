@@ -3,30 +3,34 @@
 body {
     font: 14px "Roboto";
     margin: 0;
-    background-color: #fdfdfd;
+    /* background-color: #fdfdfd; */
+    background-color: rgba(28, 27, 34);
+    color: rgb(235, 235, 236);
     height: 100vh;
     overflow: hidden;
 }
 
 .main {
     height: 100%;
+    /* width: 90vw; */
+    /* padding: 0 2vw; */
+    margin: 0 auto;
 }
 
 a {
     text-decoration: none;
-    color: black;
+    color: white;
 }
 
 a:hover {
-    border-bottom: 2px solid black;
+    /* border-bottom: 2px solid black; */
+    text-decoration: underline;
 }
 
 .nav {
     height: 4vh;
-    margin-bottom: 4vh;
     padding: 1vh 5vw;
-    /* background-color: rgb(177, 129, 255); */
-    background-color: #FAF9F6;
+    background-color: rgba(66, 65, 77, 1);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -44,9 +48,20 @@ a:hover {
     justify-content: flex-end;
 }
 
+.button {
+    background-color: rgb(119 220 239);
+    width: 15vw;
+    height: 5vh;
+    border-radius: 4px;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+}
+
 .error-message {
     border: 2px solid red;
     background-color: rgb(255, 190, 147);
+    color: black;
     width: 50%;
     text-align: center;
     margin: 10vh auto;
@@ -60,16 +75,21 @@ a:hover {
     text-align: center;
 }
 
-.log-in-hero {
-    background-color: #FAF9F6;
+.log-in-hero,
+.sign-up-hero {
+    background-color: rgba(66, 65, 77, 1);
     margin: 0 auto;
     width: 50vw;
     padding: 5vh 5vw;
-    border: 3px solid black;
+    border: 3px solid #8B8B99;
     border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.log-in-form {
+.log-in-form,
+.sign-up-form {
     margin: 0 auto;
     height: 75%;
     width: 75%;
@@ -85,4 +105,71 @@ a:hover {
     flex-direction: column;
     gap: 8px;
     font-size: 24px;
+    width: 50%;
+}
+
+.dashboard-hero {
+    display: flex;
+    gap: 8px;
+    height: 100%;
+}
+
+.dashboard-right {
+    padding: 0 2vw;
+    width: 100%;
+}
+
+.create-folder-form {
+    width: 20%;
+    height: 100%;
+    background-color: #8B8B99;
+    color: black;
+    padding: 0 2vw;
+
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.create-folder-button > .button {
+    width: 75%;
+}
+
+.folder-container {
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center; */
+
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    align-content: space-around;
+
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    height: 80%;
+    gap: 8px;
+    margin: 0 auto;
+}
+
+.folder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    background-color: rgba(66, 65, 77, 1);
+    min-width: 25vw;
+    border: 3px solid #8B8B99;
+    border-radius: 4px;
+}
+
+.folder-name {
+    background-color: #8B8B99;
+    width: 100%;
+    text-align: center;
+    color: black;
+    padding: 1vh 0;
 }

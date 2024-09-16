@@ -7,29 +7,37 @@
     <body>
         <%- include('./partials/nav.ejs') %>
         <div class="main">
-            <h1><%= title %></h1>
-            <form action="/folders/create-folder" method="POST" class="create-folder-form">
-                <label for="name">Folder Name</label>
-                <input name="name"
-                        placeholder="Folder name"
-                        type="text" />
-                <div class="create-folder-button">
-                    <button class="button">Create Folder</button>
-                </div>
-            </form>
-            <% if (message) { %>
-                <div class="error-message">
-                    <p><%- message %></p>
-                </div>
-            <% } %>
-            <div class="folder-container">
-                <% folders.forEach(function(folder) { %>
-                    <div class='folder'>
-                        <a href="/folders/<%=folder.id %>"><%- folder.name %></a>
-                        <p>Created: <%-  format(folder.createdAt, 'MMM dd, yyyy') %></p>
-                        <p>Last modified: <%- format(folder.updatedAt, 'iiii, MMMM dd, yyyy') %></p>
+            <div class="dashboard-hero">
+                <form action="/folders/create-folder" method="POST" class="create-folder-form">
+                    <h2>Create New Folder</h2>
+                    <label for="name">Folder Name</label>
+                    <input name="name"
+                            placeholder="Folder name"
+                            type="text" />
+                    <div class="create-folder-button">
+                        <button class="button">Create Folder</button>
                     </div>
-                <% }) %>
+                </form>
+                <% if (message) { %>
+                    <div class="error-message">
+                        <p><%- message %></p>
+                    </div>
+                <% } %>
+                <div class="dashboard-right">
+                    <h1><%= title %></h1>
+                    <div class="folder-container">
+                        <% folders.forEach(function(folder) { %>
+                            <div class='folder'>
+                                <a href="/folders/<%=folder.id %>" class="folder-name"><%- folder.name %></a>
+                                <p>Files: <%- folder._count.files %></p>
+                                <div class="folder-dates">
+                                    <p>Created: <%-  format(folder.createdAt, 'MMM dd, yyyy') %></p>
+                                    <p>Last modified: <%- format(folder.updatedAt, 'iiii, MMMM dd, yyyy') %></p>
+                                </div>
+                            </div>
+                        <% }) %>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
