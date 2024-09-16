@@ -9,22 +9,28 @@
 <body>
     <%- include('./partials/nav.ejs') %>
     <div class="main">
-        <h1><%- title %></h1>
-        <form action="/users/log-in" method="POST" class="log-in-form">
-            <label for="username">Username</label>
-            <input  name="username"
-                    placeholder="Username"
-                    type="text" />
-            <label for="password">Password</label>
-            <input  name="password"
-                    type="password" />
-            <div class="log-in-button">
-                <button class="button">Log in</button>
-            </div>
-        </form>
-        <% if (message) { %>
-            <div class="error-message"><%-message%></div>
-        <% } %>
+        <div class="log-in-hero">
+            <h1 class="log-in-title"><%- title %></h1>
+            <form action="/users/log-in" method="POST" class="log-in-form">
+                <div class="label-input">
+                    <label for="username">Username</label>
+                    <input  name="username"
+                            placeholder="Username"
+                            type="text" />    
+                </div>
+                <div class="label-input">
+                    <label for="password">Password</label>
+                    <input  name="password"
+                            type="password" />
+                </div>
+                <div class="log-in-button">
+                    <button class="button">Log in</button>
+                </div>
+            </form>
+            <% if (message) { %>
+                <div class="error-message"><%-message%></div>
+            <% } %>
+        </div>
     </div>
 </body>
 </html>

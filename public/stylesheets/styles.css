@@ -3,12 +3,30 @@
 body {
     font: 14px "Roboto";
     margin: 0;
+    background-color: #fdfdfd;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main {
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    border-bottom: 2px solid black;
 }
 
 .nav {
     height: 4vh;
+    margin-bottom: 4vh;
     padding: 1vh 5vw;
-    background-color: rgb(177, 129, 255);
+    /* background-color: rgb(177, 129, 255); */
+    background-color: #FAF9F6;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,4 +42,47 @@ body {
 
 .right {
     justify-content: flex-end;
+}
+
+.error-message {
+    border: 2px solid red;
+    background-color: rgb(255, 190, 147);
+    width: 50%;
+    text-align: center;
+    margin: 10vh auto;
+    padding: 4vh 10vw;
+    border-radius: 8px;
+    font-size: 16px;
+
+}
+
+.log-in-title {
+    text-align: center;
+}
+
+.log-in-hero {
+    background-color: #FAF9F6;
+    margin: 0 auto;
+    width: 50vw;
+    padding: 5vh 5vw;
+    border: 3px solid black;
+    border-radius: 24px;
+}
+
+.log-in-form {
+    margin: 0 auto;
+    height: 75%;
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 16px;
+}
+
+.label-input {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 24px;
 }
