@@ -7,32 +7,52 @@
     <body>
         <%- include('./partials/nav.ejs') %>
         <div class="main">
-            <h1><%= title %></h1>
-            <h2><%- folder.name %></h2>
-            <p>Created: <%-  format(folder.createdAt, 'MMMM dd, yyyy')%></p>
-            <p>Last modified: <%- format(folder.updatedAt, 'iiii, MMMM dd, yyyy')%></p>
-            <a href="/folders/delete-folder/<%=folder.id %>" class="button">Delete</a>
-            <a href="/folders/edit-folder/<%=folder.id %>" class="button">Edit</a>
-            <form action="/folders/upload/<%=folder.id%>/new-file" enctype="multipart/form-data" method="post" class="new-file-form">
-                <input type="file" name="uploaded_file" />
-                <!-- <label for="name">File Name</label>
-                <input type="text" placeholder="File Name" name="name" />
-                <div class="new-file-button"> -->
-                    <button class="button">Upload File</button>
-                </div>
-            </form>
-            <div class="file-container">
-                <% folder.files.forEach(function(file) { %>
-                    <div class="file">
-                        <div class="file-name"><%- file.name %></div>
-                        <div class="file-details">
-                            <!-- <p>Uploaded: <%- file.createdAt %></p> -->
-                            <p>Uploaded: <%- format(file.createdAt, 'MMMM dd, yyyy')%></p>
-                            <p><%- file.size %> bytes</p>
-                            <p>Download</p> 
-                        </div>
+            <div class="folder-hero">
+                    <div class="folder-info">
+                    <h1><%= title %></h1>
+                    <h2><%- folder.name %></h2>
+                    <p>Created: <%-  format(folder.createdAt, 'MMMM dd, yyyy')%></p>
+                    <p>Last modified: <%- format(folder.updatedAt, 'iiii, MMMM dd, yyyy')%></p>
+                    <div class="folder-info-buttons">
+                        <button class="button">
+                            <a href="/folders/delete-folder/<%=folder.id %>" class="button">Delete</a>
+                        </button>
+                        <button class="button">
+                            <a href="/folders/edit-folder/<%=folder.id %>" class="button">Edit</a>
+                        </button>
                     </div>
-                <% }) %>
+                    <form action="/folders/upload/<%=folder.id%>/new-file" enctype="multipart/form-data" method="post" class="new-file-form">
+                        <input type="file" name="uploaded_file" accept="image/*" />
+                        <!-- <label for="name">File Name</label>
+                        <input type="text" placeholder="File Name" name="name" />
+                        <div class="new-file-button"> -->
+                            <button class="button">Upload File</button>
+                    </form>
+                </div>
+                <div class="file-container">
+                    <% folder.files.forEach(function(file) { %>
+                        <div class="file">
+                            <div class="file-name">
+                                <%- file.name %>
+                                <form action="/folders/delete-file/<%- file.id %>" method="POST">
+                                    <button type="submit" class="file-delete-button" onclick="alert('Are you sure you want to delete this file?')">
+                                        <img src="/images/delete.svg" />
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="file-details">
+                                <img src="<%- file.url %>" class="file-image" />
+                                <div class="file-stats">
+                                    <p>Uploaded: <%- format(file.createdAt, 'MMMM dd, yyyy')%></p>
+                                    <p><%- (file.size/1000) %> kilobytes</p>
+                                    <button class="button" >
+                                        <a href="<%- file.url %>" download="file.name">Download</a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
             </div>
         </div>
     </body>

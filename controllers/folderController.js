@@ -15,7 +15,6 @@ exports.folderPageGet = async (req, res, next) => {
             files: true,
         }
     })
-    console.log(folderDetails)
 
     if (req.user.id !== folderDetails.userId) {
         const message = 'You are not authorized to view that folder.'
@@ -176,7 +175,7 @@ exports.deleteFolderGet = async (req, res, next) => {
             id: folderId
         }
     });
-    if (req.user.id !== folderDetails.userId) {
+    if (req.user.id !== folderToDelete.userId) {
         const message = 'You are not authorized to view that folder.'
         const folders = await prisma.user.findUnique({
             where: {
@@ -204,8 +203,6 @@ exports.deleteFolderGet = async (req, res, next) => {
 }
 
 exports.deleteFolderPost = async (req, res, next) => {
-    console.log('Line 81 ', req.params.folderid);
-    console.log('Line 74', req.params);
     try {
         const folderId = req.params.folderid;
         const folderToDelete = await prisma.folder.delete({
@@ -213,25 +210,25 @@ exports.deleteFolderPost = async (req, res, next) => {
                 id: folderId
             }
         });
-        if (req.user.id !== folderDetails.userId) {
-            const message = 'You are not authorized to view that folder.'
-            const folders = await prisma.user.findUnique({
-                where: {
-                    id: req.user.id
-                },
-                include: {
-                    folders: true,
-                }
-            })
-            res.render('dashboard', { 
-                title: 'Dashboard', 
-                user: req.user,
-                folders: folders.folders,
-                format: format,
-                message: message
-            })
-            return
-        }
+        // if (req.user.id !== folderDetails.userId) {
+        //     const message = 'You are not authorized to view that folder.'
+        //     const folders = await prisma.user.findUnique({
+        //         where: {
+        //             id: req.user.id
+        //         },
+        //         include: {
+        //             folders: true,
+        //         }
+        //     })
+        //     res.render('dashboard', { 
+        //         title: 'Dashboard', 
+        //         user: req.user,
+        //         folders: folders.folders,
+        //         format: format,
+        //         message: message
+        //     })
+        //     return
+        // }
         res.redirect('/dashboard')
     } catch (err) {
         console.error(err);
