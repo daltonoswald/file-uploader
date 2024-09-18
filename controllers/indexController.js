@@ -34,7 +34,6 @@ exports.dashboardGet = asyncHandler(async (req, res) => {
             }
         }
     })
-    console.log(folders.folders[0]);
     res.render('dashboard', { 
         title: 'Dashboard', 
         user: req.user,

@@ -48,9 +48,11 @@ passport.deserializeUser(async (id, done) => {
 })
 
 exports.userLogInGet = async (req, res, next) => {
+    if (req.session.messages) {
+        req.session.destroy();
+    }
     try {
         const message = req.session.messages || null;
-        console.log(message);
 
         res.render('log-in', {
             title: "Log in",
@@ -78,6 +80,9 @@ exports.userLogout = async(req, res, next) => {
 }
 
 exports.userSignUpGet = async (req, res, next) => {
+    if (req.session.messages) {
+        req.session.destroy();
+    }
     try {
         const message = req.session.messages || null;
 

@@ -1,19 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
+:root {
+    --primaryblue: #6f798d;
+    --background: #1c1b22;
+}
+
 body {
     font: 14px "Roboto";
     margin: 0;
-    /* background-color: #fdfdfd; */
-    background-color: rgba(28, 27, 34);
+    background-color: var(--background);
     color: rgb(235, 235, 236);
     height: 100vh;
-    /* overflow: hidden; */
 }
 
 .main {
     height: 100%;
-    /* width: 90vw; */
-    /* padding: 0 2vw; */
     margin: 0 auto;
 }
 
@@ -23,7 +24,6 @@ a {
 }
 
 a:hover {
-    /* border-bottom: 2px solid black; */
     text-decoration: underline;
 }
 
@@ -83,10 +83,10 @@ a.button,
 .log-in-hero,
 .sign-up-hero {
     background-color: rgba(66, 65, 77, 1);
-    margin: 0 auto;
+    margin: 5vh auto;
     width: 50vw;
     padding: 5vh 5vw;
-    border: 3px solid #8B8B99;
+    border: 3px solid var(--primaryblue);
     border-radius: 24px;
     display: flex;
     flex-direction: column;
@@ -121,16 +121,15 @@ a.button,
 }
 
 .dashboard-right {
-    padding: 0 2vw;
     width: 100%;
 }
 
 .create-folder-form,
 .folder-info {
-    min-width: 20%;
-    max-width: 20%;
+    min-width: 15%;
+    max-width: 15%;
     height: 100%;
-    background-color: #8B8B99;
+    background-color: var(--primaryblue);
     color: black;
     padding: 0 2vw;
 
@@ -138,6 +137,16 @@ a.button,
     display: flex;
     flex-direction: column;
     gap: 16px;
+}
+
+.folder-info > p {
+    margin: 0;
+}
+
+.new-file-form {
+    gap: 8px;
+    display: flex;
+    flex-direction: column;
 }
 
 .create-folder-button > .button {
@@ -168,16 +177,16 @@ a.button,
     display: flex;
     flex-direction: column;
     align-items: center;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     background-color: rgba(66, 65, 77, 1);
     min-width: 25vw;
-    border: 3px solid #8B8B99;
+    border: 3px solid var(--primaryblue);
     border-radius: 4px;
 }
 
 .folder-name,
 .file-name {
-    background-color: #8B8B99;
+    background-color: var(--primaryblue);
     width: 100%;
     text-align: center;
     color: black;
@@ -190,7 +199,11 @@ a.button,
 }
 
 .folder-info-buttons > .button {
-    width: 25%;
+    width: 45%;
+}
+
+.file {
+    height: 100%;
 }
 
 .file-name {
@@ -216,10 +229,11 @@ a.button,
     align-content: space-between;
     word-break: break-all;
     grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(auto-fill, 35vh);
     width: 100%;
     height: 80%;
     gap: 8px;
-    margin: 0 auto;
+    margin: 5vh auto;
 }
 
 .file-details {
@@ -227,12 +241,14 @@ a.button,
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 25vh;
+    height: 100%;
+    justify-content: space-evenly;
 }
 
 .file-image {
-    max-width: 100px;
-    max-height: 100px;
+    width: 100px;
+    height: 100px;
+    margin: 4px;
 }
 
 .file-stats {

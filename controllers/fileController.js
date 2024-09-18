@@ -12,8 +12,6 @@ const cloudinary = require('../cloudinary');
 exports.newFilePost = async (req, res, next) => {
     const file = req.file;
     const folderId = req.params.folderid;
-    // console.log('File: ', file);
-    // console.log('Folderid: ', folderId);
 
     try {
         const uploadResult = await cloudinary.uploader.upload(file.path, {
@@ -29,8 +27,6 @@ exports.newFilePost = async (req, res, next) => {
                 folderId: folderId,
             }
         });
-        console.log(uploadResult);
-        console.log(newFile)
         res.redirect(`/folders/${folderId}`)
     } catch (err) {
         return next(err);
@@ -40,13 +36,11 @@ exports.newFilePost = async (req, res, next) => {
 exports.deleteFilePost = async (req, res, next) => {
     try {
         const fileId = req.params.fileid
-        console.log(fileId);
         const fileToDelete = await prisma.file.delete({
             where: {
                 id: fileId
             }
         });
-        console.log(fileToDelete);
         // if (req.user.id !== fileToDelete.userId) {
         //     const message = 'You are not authorized to view that folder.'
         //     const folders = await prisma.user.findUnique({

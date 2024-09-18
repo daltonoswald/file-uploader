@@ -15,14 +15,14 @@
                     <p>Last modified: <%- format(folder.updatedAt, 'iiii, MMMM dd, yyyy')%></p>
                     <div class="folder-info-buttons">
                         <button class="button">
-                            <a href="/folders/delete-folder/<%=folder.id %>" class="button">Delete</a>
+                            <a href="/folders/delete-folder/<%=folder.id %>">Delete</a>
                         </button>
                         <button class="button">
-                            <a href="/folders/edit-folder/<%=folder.id %>" class="button">Edit</a>
+                            <a href="/folders/edit-folder/<%=folder.id %>">Edit</a>
                         </button>
                     </div>
                     <form action="/folders/upload/<%=folder.id%>/new-file" enctype="multipart/form-data" method="post" class="new-file-form">
-                        <input type="file" name="uploaded_file" accept="image/*" />
+                        <input type="file" name="uploaded_file" accept="image/*" required />
                         <!-- <label for="name">File Name</label>
                         <input type="text" placeholder="File Name" name="name" />
                         <div class="new-file-button"> -->
@@ -35,7 +35,7 @@
                             <div class="file-name">
                                 <%- file.name %>
                                 <form action="/folders/delete-file/<%- file.id %>" method="POST">
-                                    <button type="submit" class="file-delete-button" onclick="alert('Are you sure you want to delete this file?')">
+                                    <button type="submit" class="file-delete-button" onclick=" return confirm('Are you sure you want to delete this file?')">
                                         <img src="/images/delete.svg" />
                                     </button>
                                 </form>
