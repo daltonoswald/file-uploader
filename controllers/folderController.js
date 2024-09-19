@@ -198,6 +198,7 @@ exports.deleteFolderGet = async (req, res, next) => {
         title: 'Delete Folder',
         user: req.user,
         folder: folderToDelete,
+        format: format,
         folderid: req.params.id,
     })
 }

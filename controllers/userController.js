@@ -11,13 +11,13 @@ require('dotenv').config();
 passport.use(
     new LocalStrategy(async (username, password, done) => {
         try {
-            const user = await prisma.user.findUnique({
+            const user = await prisma.user.findFirst({
                 where: {
                     username: username
                 }
             });
             if (!user) {
-                return done(null, false, { message: "No Username found" });
+                return done(null, false, { message: "No Username found. Username may be case sensitive." });
             }
             const match = await bcryptjs.compare(password, user.password);
             if (!match) {
@@ -48,9 +48,6 @@ passport.deserializeUser(async (id, done) => {
 })
 
 exports.userLogInGet = async (req, res, next) => {
-    if (req.session.messages) {
-        req.session.destroy();
-    }
     try {
         const message = req.session.messages || null;
 
@@ -59,6 +56,9 @@ exports.userLogInGet = async (req, res, next) => {
             message: message,
             user: req.user,
         });
+        if (req.session.messages) {
+            req.session.destroy();
+        }
     } catch (err) {
         console.log(err);
     }
@@ -80,9 +80,6 @@ exports.userLogout = async(req, res, next) => {
 }
 
 exports.userSignUpGet = async (req, res, next) => {
-    if (req.session.messages) {
-        req.session.destroy();
-    }
     try {
         const message = req.session.messages || null;
 
@@ -91,6 +88,9 @@ exports.userSignUpGet = async (req, res, next) => {
             message: message,
             user: req.user,
         });
+        if (req.session.messages) {
+            req.session.destroy();
+        }
     } catch (err) {
         console.log(err);
     }
@@ -127,9 +127,12 @@ exports.userSignUpPost = [
             });
             return
         } else {
-            const usernameTaken = await prisma.user.findUnique({
+            const usernameTaken = await prisma.user.findMany({
                 where: {
-                    username: req.body.username
+                    username: {
+                        equals: req.body.username,
+                        mode: 'insensitive'
+                    }
                 }
             });
             if (usernameTaken) {
@@ -138,6 +141,7 @@ exports.userSignUpPost = [
                     errors: [{ msg: "The username is already in use"}],
                     message: "The username is already in use",
                 })
+                return;
             }
         }
         const { name, username, password } = req.body

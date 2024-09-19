@@ -6,10 +6,15 @@ require('dotenv').config();
 const format = require('date-fns').format;
 
 exports.index = asyncHandler(async (req, res) => {
-    res.render('index', { 
-        title: 'Index Page', 
-        user: req.user,
-    })
+    // res.render('index', { 
+    //     title: 'Homepage', 
+    //     user: req.user,
+    // })
+    if (req.user) {
+        res.redirect('/dashboard');
+    } else {
+        res.redirect('/users/log-in')
+    }
 })
 
 exports.dashboardGet = asyncHandler(async (req, res) => {

@@ -3,6 +3,7 @@
 :root {
     --primaryblue: #6f798d;
     --background: #1c1b22;
+    --navfooter: #42414d;
 }
 
 body {
@@ -30,7 +31,7 @@ a:hover {
 .nav {
     height: 4vh;
     padding: 1vh 5vw;
-    background-color: rgba(66, 65, 77, 1);
+    background-color: var(--navfooter);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -81,7 +82,9 @@ a.button,
 }
 
 .log-in-hero,
-.sign-up-hero {
+.sign-up-hero,
+.edit-folder-container,
+.delete-folder-container {
     background-color: rgba(66, 65, 77, 1);
     margin: 5vh auto;
     width: 50vw;
@@ -93,8 +96,15 @@ a.button,
     align-items: center;
 }
 
+.edit-folder-container,
+.delete-folder-container {
+    height: 25vh;
+}
+
 .log-in-form,
-.sign-up-form {
+.sign-up-form,
+.edit-folder-form,
+.delete-folder-form {
     margin: 0 auto;
     height: 75%;
     width: 75%;
@@ -114,7 +124,9 @@ a.button,
 }
 
 .dashboard-hero,
-.folder-hero {
+.folder-hero,
+.edit-folder-hero,
+.delete-folder-hero {
     display: flex;
     gap: 8px;
     height: 100%;
@@ -133,7 +145,7 @@ a.button,
     color: black;
     padding: 0 2vw;
 
-    margin: 0 auto;
+    /* margin: 0 auto; */
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -193,12 +205,18 @@ a.button,
     padding: 1vh 0;
 }
 
-.folder-info-buttons {
+.folder-info-buttons,
+.delete-folder-button {
     display: flex;
     justify-content: space-between;
 }
 
-.folder-info-buttons > .button {
+.delete-folder-button {
+    width: 50%;
+}
+
+.folder-info-buttons > .button,
+.delete-folder-button > .button {
     width: 45%;
 }
 
@@ -257,3 +275,47 @@ a.button,
     align-items: flex-start;
     margin: 0;
 }
+
+.footer {
+    border-top: 2px solid black;
+    background-color: var(--navfooter);
+    height: 4vh;
+    padding: 1vh 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer-odin {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .icon {
+    height: 25px;
+    filter: invert(100%) sepia(100%) saturate(100%) hue-rotate(319deg) brightness(106%) contrast(105%);
+  }
+
+  .odin-icon {
+    height: 25px;
+  }
+  
+  .footer-links > a > .icon:hover {
+    transition: 0.9s;
+    transform: rotateZ(360deg);
+  }
+  
+  .footer-text {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .footer-text > p {
+    margin: 0;
+  }

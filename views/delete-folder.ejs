@@ -7,15 +7,25 @@
     <body>
         <%- include('./partials/nav.ejs') %>
         <div class="main">
-            <h1><%= folder.name %></h1>
-                <!-- <form class="delete-folder-form" action="<%= '/folders/delete-folder/' + folderid %>" method="POST"> -->
-                    <form class="delete-folder-form" action="/folders/delete-folder/<%= folder.id%>" method="POST">
-                <label for="delete">Are you sure you want to delete this folder?</label>
-                <div class="delete-folder-button">
-                    <button type="submit" class="button">Yes</button>
-                    <a href="/" class="button">No</a>
+            <div class="delete-folder-hero">
+                <div class="folder-info">
+                    <h1><%= title %></h1>
+                    <h2><%- folder.name %></h2>
+                    <p>Created: <%-  format(folder.createdAt, 'MMMM dd, yyyy')%></p>
+                    <p>Last modified: <%- format(folder.updatedAt, 'iiii, MMMM dd, yyyy')%></p>
                 </div>
-            </form>
+                <div class="delete-folder-container">
+                    <form class="delete-folder-form" action="/folders/delete-folder/<%= folder.id%>" method="POST">
+                        <div class="label-input">
+                            <label for="delete">Are you sure you want to delete this folder?</label>
+                        </div>
+                        <div class="delete-folder-button">
+                            <button type="submit" class="button">Yes</button>
+                            <button class="button"><a href="/">No</a></button>
+                        </div>
+                    </form>
+                </div>
         </div>
+        <%- include('./partials/footer.ejs') %>
     </body>
 </html>

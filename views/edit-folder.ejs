@@ -7,20 +7,29 @@
     <body>
         <%- include('./partials/nav.ejs') %>
         <div class="main">
-            <h1><%= title %></h1>
-            <h2><%- folder.name %></h2>
-            <p>Created: <%-  format(folder.createdAt, 'MMMM dd, yyyy')%></p>
-            <p>Last modified: <%- format(folder.updatedAt, 'iiii, MMMM dd, yyyy')%></p>
-            <form action="/folders/edit-folder/<%= folder.id%>" method="POST" class="create-folder-form">
-                <label for="name">Folder Name</label>
-                <input name="name"
-                        placeholder='<%-folder.name%>'
-                        type="text"
-                        value="<%-folder.name%>" />
-                <div class="create-folder-button">
-                    <button class="button">Save Changes</button>
+            <div class="edit-folder-hero">
+                <div class="folder-info">
+                    <h1><%= title %></h1>
+                    <h2><%- folder.name %></h2>
+                    <p>Created: <%-  format(folder.createdAt, 'MMMM dd, yyyy')%></p>
+                    <p>Last modified: <%- format(folder.updatedAt, 'iiii, MMMM dd, yyyy')%></p>
                 </div>
-            </form>
+                <div class="edit-folder-container">
+                    <form action="/folders/edit-folder/<%= folder.id%>" method="POST" class="edit-folder-form">
+                        <div class="label-input">
+                            <label for="name">Edit Folder Name</label>
+                            <input name="name"
+                                    placeholder='<%-folder.name%>'
+                                    type="text"
+                                    value="<%-folder.name%>" />
+                        </div>
+                        <div class="edit-folder-button">
+                            <button class="button">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
+        <%- include('./partials/footer.ejs') %>
     </body>
 </html>

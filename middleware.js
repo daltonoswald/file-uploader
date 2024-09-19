@@ -6,3 +6,11 @@ module.exports.isSignedIn = (req, res, next) => {
         res.redirect('/users/log-in');
     }
 }
+
+module.exports.alreadySignedIn = (req, res, next) => {
+    if (!req.user) {
+        next();
+    } else {
+        res.redirect('/');
+    }
+}
