@@ -125,6 +125,7 @@ exports.userSignUpPost = [
                 title: "Sign up",
                 errors: errors.array()
             });
+            console.log(errors.array())
             return
         } else {
             const usernameTaken = await prisma.user.findMany({
