@@ -125,7 +125,6 @@ exports.userSignUpPost = [
                 title: "Sign up",
                 errors: errors.array()
             });
-            console.log(errors.array())
             return
         } else {
             const usernameTaken = await prisma.user.findMany({
@@ -136,7 +135,7 @@ exports.userSignUpPost = [
                     }
                 }
             });
-            if (usernameTaken) {
+            if (usernameTaken.length > 0) {
                 res.render('sign-up', {
                     title: "Sign up",
                     errors: [{ msg: "The username is already in use"}],
