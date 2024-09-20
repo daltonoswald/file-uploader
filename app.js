@@ -46,5 +46,4 @@ app.use(express.static('./public'));
 app.set('views', path.join(__dirname, "views"));
 app.set('view engine', 'ejs');
 
-const PORT = 3000;
-app.listen(PORT, () => console.log(`File Uploader listening on port ${PORT}`));
+app.listen(process.env.PORT || PORT, () => console.log(`File Uploader listening on port ${process.env.PORT || PORT}`));
