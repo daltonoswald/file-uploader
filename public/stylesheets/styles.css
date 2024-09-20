@@ -11,12 +11,17 @@ body {
     margin: 0;
     background-color: var(--background);
     color: rgb(235, 235, 236);
-    height: 100vh;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .main {
     height: 100%;
-    margin: 0 auto;
+    flex-grow: 1;
+    /* margin: 0 auto; */
+    display: flex;
 }
 
 a {
@@ -129,7 +134,8 @@ a.button,
 .delete-folder-hero {
     display: flex;
     gap: 8px;
-    height: 100%;
+    min-height: 100%;
+    flex-grow: 1;
 }
 
 .dashboard-right {
@@ -277,7 +283,6 @@ a.button,
 }
 
 .footer {
-    border-top: 2px solid black;
     background-color: var(--navfooter);
     height: 4vh;
     padding: 1vh 5vw;
