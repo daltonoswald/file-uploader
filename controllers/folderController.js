@@ -55,11 +55,11 @@ exports.createFolder = [
         if (!errors.isEmpty()) {
             res.render('dashboard', {
                 title: 'Dashboard',
-                erros: errors.array()
+                errors: errors.array(),
+                message: errors.msg
             });
             return
         }
-
         const { name } = req.body;
         const userId = req.user.id;
         try {
@@ -123,29 +123,10 @@ exports.editFolderPost = [
         if (!errors.isEmpty()) {
             res.render('edit-folder', {
                 title: 'Edit Folder',
-                erros: errors.array()
+                errors: errors.array()
             });
             return
         }
-        // if (req.user.id !== folderToEdit.userId) {
-        //     const message = 'You are not authorized to view that folder.'
-        //     const folders = await prisma.user.findUnique({
-        //         where: {
-        //             id: req.user.id
-        //         },
-        //         include: {
-        //             folders: true,
-        //         }
-        //     })
-        //     res.render('dashboard', { 
-        //         title: 'Dashboard', 
-        //         user: req.user,
-        //         folders: folders.folders,
-        //         format: format,
-        //         message: message
-        //     })
-        //     return
-        // }
         const { name } = req.body;
         const updateFolder = await prisma.folder.update({
             where: {
